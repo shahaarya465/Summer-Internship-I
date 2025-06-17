@@ -1,0 +1,4 @@
+for wikipedia web scrapper  -  https://en.wikipedia.org/wiki/List_of_FIFA_World_Cup_finals
+                            -  https://en.wikipedia.org/wiki/List_of_best-selling_automobiles
+                            -  https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)
+                            

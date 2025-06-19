@@ -42,7 +42,7 @@ Built a Flask web dashboard that displays real-time crypto prices, forecasts fut
 - Created line plots using Matplotlib, embedded them as images in the HTML dashboard.
 - Designed a responsive frontend using HTML, CSS3 (custom `:root` variables), and Jinja2 templating.
 - Implemented a light/dark mode toggle button using JavaScript.
-- Integrated CryptoNews API from RapidAPI to fetch the latest news articles.
+- Integrated newsdata.io API to fetch the latest news articles.
 
 **Note:**  
 ✅ This project was developed collaboratively in **Weeks 3 to 5** by **two interns**:  
@@ -57,7 +57,7 @@ Built a Flask web dashboard that displays real-time crypto prices, forecasts fut
 - **Data Analysis:** Pandas, NumPy, Scikit-learn  
 - **Visualization:** Matplotlib, Seaborn  
 - **Frontend:** HTML5, CSS3, JavaScript, Jinja2  
-- **APIs:** CoinGecko, Crypto News API (RapidAPI)  
+- **APIs:** CoinGecko, newsdata.io 
 - **Libraries:** BeautifulSoup, Requests
 
 ---

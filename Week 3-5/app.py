@@ -25,7 +25,7 @@ COINS = {
 }
 
 def get_price_history(coin):
-    url = f"https://api.coingecko.com/api/v3/coins/{coin}/market_chart"
+    url = " Your CoinGecko API endpoint "
     params = {"vs_currency": "usd", "days": "15", "interval": "daily"}
     res = requests.get(url, params=params)
 
@@ -81,7 +81,7 @@ def get_crypto_news():
     try:
         url = "https://newsdata.io/api/1/latest"
         params = {
-            "apikey": "pub_46521347dd6b409daa0f151126849b48",
+            "apikey": " your api key ",
             "q": "crypto",
             "language": "en"
         }

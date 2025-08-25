@@ -19,8 +19,7 @@ The internship included two key Python-based projects over five weeks, covering 
 ## 📅 Week 1 – Week 2  
 ### 📌 Project 1: Business Table Analyzer (Wikipedia Scraper & Analyzer)
 
-**Description:**  
-Developed a Python command-line tool that scrapes tables from websites (primarily Wikipedia), analyzes them, and generates visual summaries.
+**Description:** Developed a Python command-line tool that scrapes tables from websites (primarily Wikipedia), analyzes them, and generates visual summaries.
 
 **Key Contributions:**
 - Scraped all `<table>` elements from the user-provided URL using BeautifulSoup and `pandas.read_html()`.
@@ -33,8 +32,7 @@ Developed a Python command-line tool that scrapes tables from websites (primaril
 ## 📅 Week 3 – Week 5  
 ### 📌 Project 2: Crypto Tracker + Price Forecast Dashboard
 
-**Description:**  
-Built a Flask web dashboard that displays real-time crypto prices, forecasts future prices using machine learning, and fetches the latest crypto news.
+**Description:** Built a Flask web dashboard that displays real-time crypto prices, forecasts future prices using machine learning, and fetches the latest crypto news.
 
 **Key Contributions:**
 - Used the CoinGecko API to fetch 15-day historical data for coins like BTC, ETH, DOGE, etc.
@@ -44,9 +42,8 @@ Built a Flask web dashboard that displays real-time crypto prices, forecasts fut
 - Implemented a light/dark mode toggle button using JavaScript.
 - Integrated newsdata.io API to fetch the latest news articles.
 
-**Note:**  
-✅ This project was developed collaboratively in **Weeks 3 to 5** by **two interns**:  
-- Aarya Shah 
+**Note:** ✅ This project was developed collaboratively in **Weeks 3 to 5** by **two interns**:  
+- Aarya Shah  
 - Vansh Mehta
 
 ---
@@ -57,7 +54,7 @@ Built a Flask web dashboard that displays real-time crypto prices, forecasts fut
 - **Data Analysis:** Pandas, NumPy, Scikit-learn  
 - **Visualization:** Matplotlib, Seaborn  
 - **Frontend:** HTML5, CSS3, JavaScript, Jinja2  
-- **APIs:** CoinGecko, newsdata.io 
+- **APIs:** CoinGecko, newsdata.io  
 - **Libraries:** BeautifulSoup, Requests
 
 ---
@@ -67,3 +64,10 @@ Built a Flask web dashboard that displays real-time crypto prices, forecasts fut
 - Built two complete Python projects: a data analysis CLI tool and a full-stack crypto dashboard.
 - Applied real-world APIs for data integration and analytics.
 - Strengthened skills in Python, data visualization, web development, and collaboration.
+
+---
+
+## 🔗 Links
+
+- **📄 Internship Report:** [View the full report here](https://drive.google.com/file/d/1LRe7o68ZRK3TYOyW7y5pNWp_wdlqvIu4/view?usp=drive_link)
+- **✍️ Blog Post:** [Read about the internship experience](https://shahaarya465.blogspot.com/2025/08/summer-internship-i.html)

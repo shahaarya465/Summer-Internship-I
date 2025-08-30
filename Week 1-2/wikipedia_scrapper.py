@@ -1,9 +1,8 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
-import csv
 import re
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urlparse
 import time
 
 class WikipediaScraper:
@@ -78,37 +77,6 @@ class WikipediaScraper:
         
         return saved_files
     
-    def extract_infobox(self, soup, save_as="wikipedia_infobox.csv"):
-        # Extract infobox data from the page
-        infobox = soup.find('table', class_='infobox')
-        
-        if not infobox:
-            print("No infobox found on this page.")
-            return None
-        
-        data = []
-        
-        for row in infobox.find_all('tr'):
-            cells = row.find_all(['th', 'td'])
-            if len(cells) >= 2:
-                key = cells[0].get_text().strip()
-                value = cells[1].get_text().strip()
-                # Clean the text
-                key = re.sub(r'\[\d+\]', '', key)
-                value = re.sub(r'\[\d+\]', '', value)
-                value = re.sub(r'\s+', ' ', value)
-                data.append([key, value])
-        
-        if data:
-            df = pd.DataFrame(data, columns=['Property', 'Value'])
-            df.to_csv(save_as, index=False, encoding='utf-8')
-            print(f"Infobox saved as {save_as} ({len(data)} properties)")
-            print("\nInfobox preview:")
-            print(df.head())
-            return save_as
-        
-        return None
-    
     def extract_text_content(self, soup, save_as="wikipedia_content.txt"):
         # Find the main content div
         content_div = soup.find('div', id='mw-content-text')
@@ -135,37 +103,7 @@ class WikipediaScraper:
             print(f"Text content saved as {save_as} ({len(content)} paragraphs)")
             return save_as
         
-        return None
-    
-    def extract_links(self, soup, save_as="wikipedia_links.csv"):
-        content_div = soup.find('div', id='mw-content-text')
-        
-        if not content_div:
-            print("Could not find main content.")
-            return None
-        
-        links_data = []
-        
-        for link in content_div.find_all('a', href=True):
-            href = link.get('href')
-            text = link.get_text().strip()
-            
-            # Filter for Wikipedia article links
-            if href.startswith('/wiki/') and ':' not in href and text:
-                full_url = urljoin('https://en.wikipedia.org', href)
-                links_data.append([text, full_url])
-        
-        if links_data:
-            # Remove duplicates
-            links_data = list(set(tuple(row) for row in links_data))
-            links_data = [list(row) for row in links_data]
-            
-            df = pd.DataFrame(links_data, columns=['Link Text', 'URL'])
-            df.to_csv(save_as, index=False, encoding='utf-8')
-            print(f"Links saved as {save_as} ({len(links_data)} unique links)")
-            return save_as
-        
-        return None
+        return None    
     
     def scrape_page(self, url):
         print(f"Scraping Wikipedia page: {url}")

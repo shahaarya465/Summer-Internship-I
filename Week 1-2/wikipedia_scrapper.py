@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import re
 from urllib.parse import urlparse
 import time
+import os
 
 class WikipediaScraper:
     def __init__(self):
@@ -22,7 +23,7 @@ class WikipediaScraper:
             print(f"Error fetching page: {e}")
             return None
     
-    def extract_tables(self, soup, save_prefix="wikipedia_table"):
+    def extract_tables(self, soup, save_prefix="table", output_dir="."):
         # Extract all tables from the page and save as CSV
         tables = soup.find_all('table', class_='wikitable')
         
@@ -63,9 +64,10 @@ class WikipediaScraper:
                     
                     # Save to CSV
                     filename = f"{save_prefix}{i+1}.csv"
-                    df.to_csv(filename, index=False, encoding='utf-8')
-                    saved_files.append(filename)
-                    print(f"Table {i+1} saved as {filename} ({df.shape[0]} rows, {df.shape[1]} columns)")
+                    filepath = os.path.join(output_dir, filename)
+                    df.to_csv(filepath, index=False, encoding='utf-8')
+                    saved_files.append(filepath)
+                    print(f"Table {i+1} saved as {filepath} ({df.shape[0]} rows, {df.shape[1]} columns)")
                     
                     # Show preview
                     print(f"\nPreview of Table {i+1}:")
@@ -77,7 +79,7 @@ class WikipediaScraper:
         
         return saved_files
     
-    def extract_text_content(self, soup, save_as="wikipedia_content.txt"):
+    def extract_text_content(self, soup, save_as="content.txt", output_dir="."):
         # Find the main content div
         content_div = soup.find('div', id='mw-content-text')
         
@@ -98,10 +100,11 @@ class WikipediaScraper:
                 content.append(text)
         
         if content:
-            with open(save_as, 'w', encoding='utf-8') as f:
+            filepath = os.path.join(output_dir, save_as)
+            with open(filepath, 'w', encoding='utf-8') as f:
                 f.write('\n\n'.join(content))
-            print(f"Text content saved as {save_as} ({len(content)} paragraphs)")
-            return save_as
+            print(f"Text content saved as {filepath} ({len(content)} paragraphs)")
+            return filepath
         
         return None    
     
@@ -126,14 +129,22 @@ class WikipediaScraper:
         
         print(f"Page title: {page_title}")
         
+        # Create directory for this page
+        output_dir = page_title
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+            print(f"Created directory: {output_dir}")
+        else:
+            print(f"Using existing directory: {output_dir}")
+        
         saved_files = []
         
         # Extract tables
-        table_files = self.extract_tables(soup, "table")
+        table_files = self.extract_tables(soup, "table", output_dir)
         saved_files.extend(table_files)
         
         # Extract text content
-        content_file = self.extract_text_content(soup, "content.txt")
+        content_file = self.extract_text_content(soup, "content.txt", output_dir)
         if content_file:
             saved_files.append(content_file)
         
@@ -157,7 +168,7 @@ def main():
         except Exception as e:
             print(f"Error during scraping: {e}")
         
-        # Small delay to be respectful to Wikipedia's servers
+        # Small delay
         time.sleep(1)
 
 if __name__ == "__main__":
